@@ -23,4 +23,6 @@ public class UIMapper {
     public static final String TOP_BAG_CONTAINER = "div[id='topBagContainer']>h1";
     public static final String TOP_CHECKOUT_CONTAINER = "div[id='topCheckoutContainer']>h1";
     public static final String LOADING = "div[id='loaderBackground']";
+    public static final String CREDIT_CARD = "input[id='CC_cardNumber']";
+    public static final String CONTINUE_TO_PAY = "button[id='continueToPayButton']";
 }

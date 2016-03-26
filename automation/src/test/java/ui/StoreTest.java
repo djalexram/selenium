@@ -64,8 +64,16 @@ public class StoreTest extends BaseTest {
         String header2 = getElementText(driver,UIMapper.TOP_CHECKOUT_CONTAINER);
         Reporter.log(header2, true);
         Assert.assertTrue(header2.equalsIgnoreCase("Secure Checkout"));
-        StorePage.clickGuestCheckout(driver);
+        CheckoutPage.clickGuestCheckout(driver);
         CheckoutPage.fillOutCheckout(driver);
+
+        CheckoutPage.clickDeliveryContinue(driver);
+        isLoading(driver);
+        CheckoutPage.clickContinueToPay(driver);
+        String url = driver.getCurrentUrl();
+        Reporter.log(url, true);
+        waitForElementVisible(driver,UIMapper.CREDIT_CARD);
+        Assert.assertTrue(url.contains("https://"),"Page for credit card info is not secure");
     }
 
 

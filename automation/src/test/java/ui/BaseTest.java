@@ -3,6 +3,8 @@ package ui;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.UIMapper;
 
 import java.util.ArrayList;
@@ -29,11 +31,9 @@ public class BaseTest {
         }
     }
 
-
-
     public static String getElementText(WebDriver driver, String cssPath){
-        String text =  driver.findElement(By.cssSelector(cssPath)).getText();
-        return text;
+        return driver.findElement(By.cssSelector(cssPath)).getText();
+
     }
 
     public static boolean isDisplayed(WebDriver driver, String cssPath){
@@ -56,6 +56,10 @@ public class BaseTest {
 
     public static void clickButton(WebDriver driver, String locator){
         driver.findElement(By.cssSelector(locator)).click();
+    }
+
+    public static void waitForElementVisible(WebDriver driver, String locator) {
+        (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(locator)));
     }
 
 }
