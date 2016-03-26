@@ -4,34 +4,33 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Created by ar2130 on 3/25/16.
  */
 public class StorePage {
     private static WebElement element = null;
 
-    public static WebElement getElement(WebDriver driver, String cssPath){
 
-        element =  driver.findElement(By.cssSelector(cssPath));
-
-        return element;
-
+    public static void clickMyBag(WebDriver driver){
+        driver.findElement(By.cssSelector(UIMapper.MY_BAG)).click();
     }
 
-    public static List<String> getElementsText(WebDriver driver, String cssPath){
-        List<String> elementTextList = new ArrayList<String>();
-        List<WebElement> elementList;
-        elementList = driver.findElements(By.cssSelector(cssPath));
-        for(WebElement temp: elementList) {
-            elementTextList.add(temp.getText());
-        }
-
-
-        return elementTextList;
-
+    public static void clickCheckout(WebDriver driver){
+        driver.findElement(By.cssSelector(UIMapper.CHECKOUT)).click();
     }
+
+    public static void clickBeginCheckout(WebDriver driver){
+        driver.findElement(By.cssSelector(UIMapper.BEGIN_CHECKOUT)).click();
+    }
+
+    public static void clickGuestCheckout(WebDriver driver){
+        driver.findElement(By.cssSelector(UIMapper.GUEST_CHECKOUT)).click();
+    }
+
+    public static void clickDeliveryContinue(WebDriver driver){
+        driver.findElement(By.cssSelector(UIMapper.GUEST_CHECKOUT)).click();
+    }
+
+
 
 }
