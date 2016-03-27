@@ -5,36 +5,33 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 /**
  * Created by ar2130 on 3/26/16.
  */
-public class CheckoutPage  {
+public class CheckoutPage {
 
-    public static void inputField(WebDriver driver, String locator, String input){
-        driver.findElement(By.cssSelector(locator)).sendKeys(input);
 
-    }
-    public static void fillOutCheckout(WebDriver driver){
+    public static void fillOutCheckout(WebDriver driver) {
+        Properties prop = new Properties();
+
+        try {
+            InputStream in = CheckoutPage.class.getResourceAsStream("/qa1.properties");
+            prop.load(in);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(UIMapper.FIRST_NAME)));
-        inputField(driver, UIMapper.FIRST_NAME, System.getProperty("store.fname"));
-        inputField(driver, UIMapper.LAST_NAME,System.getProperty("store.lname"));
-        inputField(driver, UIMapper.ADDRESS1,System.getProperty("store.address1"));
-        inputField(driver, UIMapper.ZIP, System.getProperty("store.zip"));
-    }
+        driver.findElement(By.cssSelector(UIMapper.FIRST_NAME)).sendKeys(prop.getProperty("store.fname"));
+        driver.findElement(By.cssSelector(UIMapper.LAST_NAME)).sendKeys(prop.getProperty("store.lname"));
+        driver.findElement(By.cssSelector(UIMapper.ADDRESS1)).sendKeys(prop.getProperty("store.address1"));
+        driver.findElement(By.cssSelector(UIMapper.ZIP)).sendKeys(prop.getProperty("store.zip"));
+        (new WebDriverWait(driver, 10)).until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector(UIMapper.DEFAULT_STATE)));
+        driver.findElement(By.cssSelector(UIMapper.PHONE)).sendKeys(prop.getProperty("store.phone"));
 
-    public static void clickGuestCheckout(WebDriver driver){
-        (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector(UIMapper.GUEST_CHECKOUT)));
-        driver.findElement(By.cssSelector(UIMapper.GUEST_CHECKOUT)).click();
-    }
-
-    public static void clickDeliveryContinue(WebDriver driver){
-        (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector(UIMapper.DELIVERY_CONTINUE)));
-        driver.findElement(By.cssSelector(UIMapper.DELIVERY_CONTINUE)).click();
-    }
-
-    public static void clickContinueToPay(WebDriver driver){
-        (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector(UIMapper.CONTINUE_TO_PAY)));
-        driver.findElement(By.cssSelector(UIMapper.CONTINUE_TO_PAY)).click();
     }
 
 }
