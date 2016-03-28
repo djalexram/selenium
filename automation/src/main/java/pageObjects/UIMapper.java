@@ -22,7 +22,8 @@ public class UIMapper {
     public static final String DELIVERY_CONTINUE = "button[id='continueToPayButton']";
     public static final String TOP_BAG_CONTAINER = "div[id='topBagContainer']>h1";
     public static final String TOP_CHECKOUT_CONTAINER = "div[id='topCheckoutContainer']>h1";
-    public static final String LOADING = "div[id='loaderBackground']";
+    public static final String LOADING = "div#loaderBackground";
+    public static final String POPUP_BACKGROUND = "div[class='popupBackground']";
     public static final String CREDIT_CARD = "input[id='CC_cardNumber']";
     public static final String USE_ENTERED_ADDRESS = "a[class='useEnteredAddress']";
     public static final String DEFAULT_STATE = "//div[@class='customSelect cityState']/select/option[normalize-space(.)='Enter Zip Code for City/State']";

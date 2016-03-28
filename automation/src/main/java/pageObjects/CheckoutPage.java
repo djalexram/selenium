@@ -22,6 +22,7 @@ public class CheckoutPage {
             InputStream in = CheckoutPage.class.getResourceAsStream("/qa1.properties");
             prop.load(in);
         } catch (IOException e) {
+            System.out.println("Properties file not found");
             e.printStackTrace();
         }
         (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(UIMapper.FIRST_NAME)));

@@ -50,7 +50,7 @@ public class BaseTest {
         return elementTextList;
     }
 
-    public static void clickLink(WebDriver driver, String xPath, String menu) {
+    public static void clickLinkXpath(WebDriver driver, String xPath, String menu) {
         driver.findElement(By.xpath(xPath + "[contains(normalize-space(.),'" + menu + "')]")).click();
     }
 
@@ -62,8 +62,13 @@ public class BaseTest {
         (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(locator)));
     }
 
-    public static void clickLinkWaitForCondition(WebDriver driver, String css) {
-        (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector(css)));
+    public static void waitForElementToBeClickable(WebDriver driver, String locator) {
+        (new WebDriverWait(driver, 10)).until(ExpectedConditions.elementToBeClickable(By.cssSelector(locator)));
+    }
+
+    public static void waitForLinkThenClick(WebDriver driver, String css) throws InterruptedException {
+        isLoading(driver);
+        waitForElementToBeClickable(driver, css);
         driver.findElement(By.cssSelector(css)).click();
     }
 
